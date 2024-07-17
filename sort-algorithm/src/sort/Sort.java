@@ -1,5 +1,7 @@
 package sort;
 
+import sort.component.RandomModule;
+
 import java.util.Arrays;
 
 public abstract class Sort {
@@ -8,10 +10,7 @@ public abstract class Sort {
     protected long endTime;
 
     public Sort(int count) {
-        integerGroup = new int[count];
-        for (int i = 0; i < count; i++) {
-            integerGroup[i] = RandomModule.getNumber(count);
-        }
+        integerGroup = RandomModule.getArray(count);
     }
 
     public void sort() {
@@ -34,4 +33,13 @@ public abstract class Sort {
         array[i] = array[j];
         array[j] = temp;
     }
+
+    protected int getMin() {
+        return Arrays.stream(integerGroup).min().orElseThrow(RuntimeException::new);
+    }
+
+    protected int getMax() {
+        return Arrays.stream(integerGroup).max().orElseThrow(RuntimeException::new);
+    }
+
 }

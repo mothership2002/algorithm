@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="Sort.js"></script>
+<script src="BubbleSort.js"></script>
+<script src="HeapSort.js"></script>
+<script src="InsertSort.js"></script>
+<script src="MergeSort.js"></script>
+<script src="QuickSort.js"></script>
+<script src="RadixSort.js"></script>
+<script src="SelectSort.js"></script>
+<script src="ShellSort.js"></script>
+<body>
+<label>
+    <select id="selected">
+        <option>BubbleSort</option>
+        <option>HeapSort</option>
+        <option>InsertSort</option>
+        <option>MergeSort</option>
+        <option>QuickSort</option>
+        <option>RadixSort</option>
+        <option>SelectSort</option>
+        <option>ShellSort</option>
+    </select>
+    <input type="number" id="count"/>
+    <button id="execute">click</button>
+    <div id="before"></div>
+    <br>
+    <div id="after"></div>
+</label>
+</body>
+<script>
+
+    document.getElementById('execute').addEventListener('click', () => {
+        const count = document.getElementById('count').value
+        const sortCategory = {
+            'BubbleSort': new BubbleSort(count),
+            'HeapSort': new HeapSort(count),
+            'InsertSort': new InsertSort(count),
+            'MergeSort': new MergeSort(count),
+            'QuickSort': new QuickSort(count),
+            'RadixSort': new RadixSort(count),
+            'SelectSort': new SelectSort(count),
+            'ShellSort': new ShellSort(count),
+        }
+        const selected = document.getElementById('selected').value;
+        const sort = sortCategory[selected];
+        document.getElementById('before').innerText = sort.getNumberGroup();
+        sort.sort();
+        document.getElementById('after').innerText = sort.getNumberGroup();
+    });
+</script>
+</html>
