@@ -1,5 +1,3 @@
-package sort.component;
-
 import java.util.*;
 
 public class RandomModule {
