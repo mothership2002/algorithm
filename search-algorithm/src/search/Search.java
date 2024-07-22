@@ -10,15 +10,16 @@ public abstract class Search {
 
     public Search(int count) {
         integerGroup = RandomModule.getArray(count);
+        System.out.println("last one : " + integerGroup[integerGroup.length - 1]);
     }
 
-    protected void search() {
+    protected void search(int keyword) {
         startTime = System.nanoTime();
-        searching();
+        searching(keyword);
         endTime = System.nanoTime();
         double durationMs = ((double) (endTime - startTime) / 1_000_000);
-        System.out.println("[소요 시간] : " + durationMs + "ms");
+        System.out.println("[ duration ] : " + durationMs + "ms");
     }
 
-    protected abstract void searching();
+    protected abstract void searching(int keyword);
 }

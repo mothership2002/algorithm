@@ -9,8 +9,9 @@ public class LinearSearch extends Search {
         super(count);
     }
 
+
     @Override
-    protected void searching() {
-        
+    protected void searching(int keyword) {
+
     }
 }
