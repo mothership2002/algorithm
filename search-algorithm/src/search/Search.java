@@ -1,6 +1,6 @@
 package search;
 
-import component.RandomModule;
+import module.RandomModule;
 
 public abstract class Search {
 
@@ -17,7 +17,7 @@ public abstract class Search {
         searching();
         endTime = System.nanoTime();
         double durationMs = ((double) (endTime - startTime) / 1_000_000);
-        System.out.println("[소요시간] : " + durationMs + "ms");
+        System.out.println("[소요 시간] : " + durationMs + "ms");
     }
 
     protected abstract void searching();

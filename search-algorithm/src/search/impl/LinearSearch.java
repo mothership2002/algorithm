@@ -11,6 +11,6 @@ public class LinearSearch extends Search {
 
     @Override
     protected void searching() {
-
+        
     }
 }

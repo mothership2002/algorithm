@@ -1,3 +1,5 @@
+package module;
+
 import java.util.*;
 
 public class RandomModule {

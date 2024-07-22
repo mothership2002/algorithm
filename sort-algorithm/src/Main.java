@@ -1,12 +1,15 @@
+import module.ClassExplorer;
 import sort.Sort;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
 
 public class Main {
+
     private final static String INIT = "초기 값";
     private final static String END = "정렬 값";
     private final static boolean FLAG = true;
@@ -44,10 +47,11 @@ public class Main {
 
     private static void print(String name, int count) {
         Map<String, Sort> sortMap = new HashMap<>();
-        Set<Class<?>> classList = getClassList(PACKAGE);
+        Set<Class<?>> classList = ClassExplorer.getClassList(PACKAGE);
         for (Class<?> clazz : classList) {
             try {
-                sortMap.put(clazz.getSimpleName().replace(POSTFIX, BLANK).toLowerCase(), (Sort) clazz.getDeclaredConstructor(int.class).newInstance(count));
+                sortMap.put(clazz.getSimpleName().replace(POSTFIX, BLANK).toLowerCase(),
+                        (Sort) clazz.getDeclaredConstructor(int.class).newInstance(count));
             } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
                      InvocationTargetException e) {
                 throw new RuntimeException(e);
@@ -61,26 +65,5 @@ public class Main {
         }
     }
 
-    public static Set<Class<?>> getClassList(String packageName) {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        Set<Class<?>> classes = new HashSet<>();
-        try {
-            Enumeration<URL> resources = classLoader.getResources(packageName.replace('.', '/'));
-            while (resources.hasMoreElements()) {
-                URL resource = resources.nextElement();
-                File file = new File(resource.getFile());
-                if (file.isDirectory()) {
-                    String[] fileList = file.list();
-                    if (fileList != null) {
-                        for (String fileName : fileList) {
-                            classes.add(Class.forName(packageName + DOT + fileName.substring(0, fileName.lastIndexOf(DOT))));
-                        }
-                    }
-                }
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return classes;
-    }
+
 }

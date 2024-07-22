@@ -1,6 +1,6 @@
 package sort;
 
-import sort.component.RandomModule;
+import module.RandomModule;
 
 import java.util.Arrays;
 
