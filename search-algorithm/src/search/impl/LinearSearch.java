@@ -1,9 +1,9 @@
 package search.impl;
 
-import search.Search;
+import search.SearchAlgorithm;
 
 
-public class LinearSearch extends Search {
+public class LinearSearch extends SearchAlgorithm {
 
     public LinearSearch(int count) {
         super(count);

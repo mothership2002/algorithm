@@ -1,8 +1,8 @@
 package sort.abs;
 
-import sort.Sort;
+import sort.SortAlgorithm;
 
-public abstract class NDoubleSquareSort extends Sort {
+public abstract class NDoubleSquareSort extends SortAlgorithm {
 
     public NDoubleSquareSort(int count) {
         super(count);

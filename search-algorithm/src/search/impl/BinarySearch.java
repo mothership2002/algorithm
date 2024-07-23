@@ -1,9 +1,9 @@
 package search.impl;
 
 import module.RandomModule;
-import search.Search;
+import search.SearchAlgorithm;
 
-public class BinarySearch extends Search {
+public class BinarySearch extends SearchAlgorithm {
     public BinarySearch(int count) {
         super();
         // for binary search

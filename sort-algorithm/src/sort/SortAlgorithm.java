@@ -5,21 +5,11 @@ import module.RandomModule;
 
 import java.util.Arrays;
 
-public abstract class Sort implements Algorithm {
+public abstract class SortAlgorithm extends Algorithm {
     protected int[] integerGroup;
-    protected long startTime;
-    protected long endTime;
 
-    public Sort(int count) {
+    public SortAlgorithm(int count) {
         integerGroup = RandomModule.getArray(count);
-    }
-
-    public void sort() {
-        startTime = System.nanoTime();
-        sorting();
-        endTime = System.nanoTime();
-        double durationMs = ((double) (endTime - startTime) / 1_000_000);
-        System.out.println(DURATION + durationMs + MILLISECOND);
     }
 
     public void printIntegerGroup(String name) {

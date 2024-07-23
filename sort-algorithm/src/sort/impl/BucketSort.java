@@ -1,11 +1,11 @@
 package sort.impl;
 
-import sort.Sort;
+import sort.SortAlgorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class BucketSort extends Sort {
+public class BucketSort extends SortAlgorithm {
 
     public BucketSort(int count) {
         super(count);

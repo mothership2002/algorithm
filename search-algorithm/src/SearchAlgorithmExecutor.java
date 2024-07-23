@@ -1,6 +1,6 @@
 import abs.Algorithm;
 import module.ClassExplorer;
-import search.Search;
+import search.SearchAlgorithm;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +9,6 @@ import java.util.Set;
 public class SearchAlgorithmExecutor {
 
     private static final String PACKAGE = "search.impl";
-    private static final String POSTFIX = "Search";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -26,14 +25,14 @@ public class SearchAlgorithmExecutor {
 
         // init
         Set<Class<?>> classList = ClassExplorer.getClassList(PACKAGE);
-        List<Algorithm> list = ClassExplorer.init(classList, count, POSTFIX, name);
+        List<Algorithm> list = ClassExplorer.init(classList, count, name);
         System.out.print("put in you want to find one : ");
         String keyword = scanner.nextLine();
 
         // execute
         list.stream()
-                .map(algorithm -> (Search) algorithm)
-                .forEach(search -> search.search(Integer.parseInt(keyword)));
+                .map(algorithm -> (SearchAlgorithm) algorithm)
+                .forEach(search -> search.run(Integer.parseInt(keyword)));
 
     }
 

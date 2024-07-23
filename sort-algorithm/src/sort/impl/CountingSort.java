@@ -1,10 +1,8 @@
 package sort.impl;
 
-import sort.Sort;
+import sort.SortAlgorithm;
 
-import java.util.Arrays;
-
-public class CountingSort extends Sort {
+public class CountingSort extends SortAlgorithm {
     public CountingSort(int count) {
         super(count);
     }

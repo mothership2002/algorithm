@@ -1,9 +1,8 @@
 import abs.Algorithm;
 import module.ClassExplorer;
-import sort.Sort;
+import sort.SortAlgorithm;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -14,7 +13,6 @@ public class SortAlgorithmExecutor {
     private final static String END = "정렬 값";
     private final static boolean FLAG = false;
     private static final String PACKAGE = "sort.impl";
-    private static final String POSTFIX = "Sort";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -30,15 +28,13 @@ public class SortAlgorithmExecutor {
     }
 
     public static void print(Algorithm algorithm) {
-        System.out.println("=======================================");
-        Sort sort = (Sort) algorithm;
-        System.out.println(sort.getClass().getSuperclass().getSimpleName() + " / " + sort.getClass().getSimpleName());
+        SortAlgorithm sort = (SortAlgorithm) algorithm;
         print(sort, INIT);
-        sort.sort();
+        sort.run();
         print(sort, END);
     }
 
-    private static void print(Sort sort, String text) {
+    private static void print(SortAlgorithm sort, String text) {
         if (FLAG) {
             sort.printIntegerGroup(text);
         }
@@ -46,7 +42,7 @@ public class SortAlgorithmExecutor {
 
     private static void print(String name, int count) {
         Set<Class<?>> classList = ClassExplorer.getClassList(PACKAGE);
-        List<Algorithm> list = ClassExplorer.init(classList, count, POSTFIX, name);
+        List<Algorithm> list = ClassExplorer.init(classList, count, name);
         list.forEach(SortAlgorithmExecutor::print);
     }
 

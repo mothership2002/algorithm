@@ -1,13 +1,13 @@
 package sort.impl;
 
-import sort.Sort;
+import sort.SortAlgorithm;
 
 import java.util.Arrays;
 
 /**
  * O(d×(n+k))
  */
-public class RadixSort extends Sort {
+public class RadixSort extends SortAlgorithm {
 
     public RadixSort(int count) {
         super(count);
