@@ -12,6 +12,10 @@ public class LinearSearch extends Search {
 
     @Override
     protected void searching(int keyword) {
-
+        for (int i : integerGroup) {
+            if (i == keyword) {
+                break;
+            }
+        }
     }
 }

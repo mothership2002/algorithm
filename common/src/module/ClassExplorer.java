@@ -1,16 +1,22 @@
 package module;
 
+import abs.Algorithm;
+
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class ClassExplorer {
     private static final String BLANK = "";
     private static final String DOT = ".";
 
+    /**
+     * scanning class files from target's root path
+     * @param packageName @ root path
+     * @return classes metadata collection set
+     */
     public static Set<Class<?>> getClassList(String packageName) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         Set<Class<?>> classes = new HashSet<>();
@@ -33,4 +39,43 @@ public class ClassExplorer {
         }
         return classes;
     }
+
+    /**
+     *
+     * @param classList @ Collection classes metadata
+     * @param count     @ User input - integerGroup length
+     * @param POSTFIX   @ Algorithm POSTFIX (ex: Sort, Search ...)
+     * @param name      @ Algorithm name // if not contain in files name, all files will be executed.
+     * @return Algorithm collection
+     */
+    public static List<Algorithm> init(Collection<Class<?>> classList, int count, String POSTFIX, String name) {
+        List<Class<?>> filteredClass = classList.stream()
+                .filter(clazz -> clazz.getSimpleName().contains(name))
+                .toList();
+        return filteredClass.isEmpty()
+                ? getAlgorithmMap(classList, count, POSTFIX)
+                : getAlgorithmMap(filteredClass, count, POSTFIX);
+    }
+
+    /**
+     *
+     * @param classList @ Collection classes metadata
+     * @param count     @ User input - integerGroup length
+     * @param POSTFIX   @ Algorithm POSTFIX (ex: Sort, Search ...)
+     * @return List of Algorithm
+     */
+    private static List<Algorithm> getAlgorithmMap(Collection<Class<?>> classList, int count, String POSTFIX) {
+        List<Algorithm> algorithms = new ArrayList<>();
+        for (Class<?> clazz : classList) {
+            try {
+                algorithms.add((Algorithm) clazz.getDeclaredConstructor(int.class).newInstance(count));
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                     InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return algorithms;
+    }
+
+
 }
