@@ -29,7 +29,7 @@ public class GraphSearchAlgorithmExecutor {
         String inputIndex = scanner.nextLine();
         String simpleName = "all";
         try {
-            simpleName = classList.get(Integer.parseInt(inputIndex)).getSimpleName();
+            simpleName = classList.get(Integer.parseInt(inputIndex) - 1).getSimpleName();
         } catch (RuntimeException ignored) {
         }
 

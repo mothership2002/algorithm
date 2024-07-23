@@ -1,11 +1,11 @@
 package sort;
 
-import abs.Algorithm;
+import abs.Sort;
 import module.RandomModule;
 
 import java.util.Arrays;
 
-public abstract class SortAlgorithm extends Algorithm {
+public abstract class SortAlgorithm extends Sort {
     protected int[] integerGroup;
 
     public SortAlgorithm(int count) {

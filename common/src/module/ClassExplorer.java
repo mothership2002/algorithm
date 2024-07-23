@@ -51,7 +51,7 @@ public class ClassExplorer {
      */
     public static List<Algorithm> init(Collection<Class<?>> classList, int count, String name) {
         List<Class<?>> filteredClass = classList.stream()
-                .filter(clazz -> clazz.getSimpleName().toLowerCase().contains(name))
+                .filter(clazz -> clazz.getSimpleName().toLowerCase().contains(name.toLowerCase()))
                 .toList();
         return filteredClass.isEmpty()
                 ? getAlgorithmList(classList, count)

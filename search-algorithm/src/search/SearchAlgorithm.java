@@ -1,9 +1,10 @@
 package search;
 
 import abs.Algorithm;
+import abs.Search;
 import module.RandomModule;
 
-public abstract class SearchAlgorithm extends Algorithm {
+public abstract class SearchAlgorithm extends Search {
 
     protected final String INDEX = "Keyword found at index : ";
     protected final String LAST_ONE = "last one : ";

@@ -3,18 +3,19 @@ package graph.impl;
 import graph.GraphSearch;
 import graph.datastructures.Graph;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 import java.util.stream.IntStream;
 
-public class BreadthFirstSearch extends GraphSearch {
+public class DepthFirstSearch extends GraphSearch {
 
-    private final LinkedList<Graph> queue = new LinkedList<>();
+    private final Stack<Graph> stack = new Stack<>();
 
-    public BreadthFirstSearch(int count) {
-        if (count <= 0) {
-            count = 20;
-        }
+    public DepthFirstSearch(int count) {
+        if (count <= 0) count = 20;
+
         List<Graph> graphs = getGraphs(count);
 
         for (int i = 0; i < graphs.size(); i++) {
@@ -29,20 +30,24 @@ public class BreadthFirstSearch extends GraphSearch {
             }
         }
         this.rootGraph = graphs.get(0);
+
     }
 
     @Override
-    public void searching(int keyword) {
-        queue.add(rootGraph);
+    protected void searching(int keyword) {
+        stack.push(rootGraph);
         int count = 0;
-        while (!queue.isEmpty()) {
-            rootGraph = queue.poll();
+        while (!stack.isEmpty()) {
+            rootGraph = stack.pop();
             count++;
             if (isEquals(keyword)) {
                 System.out.println("[depth] : " + rootGraph.getDepth() + " / [round] : " + count);
                 return;
             }
-            queue.addAll(rootGraph.getNextGraphList());
+            List<Graph> childList = rootGraph.getNextGraphList();
+            for (int i = childList.size() -1; i >= 0; i--) {
+                stack.push(childList.get(i));
+            }
         }
         System.out.println("keyword not found");
     }
