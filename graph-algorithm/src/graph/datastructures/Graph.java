@@ -6,6 +6,7 @@ import java.util.List;
 public class Graph {
 
     private int value;
+    private int depth;
     private final List<Graph> nextGraphList = new ArrayList<>();
 
     public Graph(int value) {
@@ -22,6 +23,14 @@ public class Graph {
 
     public void changeValue(int value) {
         this.value = value;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
     }
 
     public void addNextGraph(Graph nextGraph) {

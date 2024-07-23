@@ -8,4 +8,4 @@ heap, insert, bucket, counting, shell, select, radix
 linear
 
 240723
-binary
+binary, bfs
