@@ -3,11 +3,8 @@ package graph.impl;
 import graph.GraphSearch;
 import graph.datastructures.Graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
-import java.util.stream.IntStream;
 
 public class DepthFirstSearch extends GraphSearch {
 

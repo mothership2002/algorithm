@@ -1,6 +1,5 @@
 package graph;
 
-import abs.Algorithm;
 import abs.Search;
 import graph.datastructures.Graph;
 
@@ -11,16 +10,12 @@ public abstract class GraphSearch extends Search {
 
     protected Graph rootGraph;
 
-    protected void initGraph(Graph graph) {
-        this.rootGraph = graph;
-    }
-
     protected boolean isEquals(int keyword) {
         return rootGraph.getValue() == keyword;
     }
 
     protected List<Graph> getGraphs(int count) {
-        if (count % 2 == 0) {
+        if ((count % 2) == 0) {
             return IntStream.rangeClosed(1, count).mapToObj(Graph::new).toList();
         }
         return getReverseGraphs(count);

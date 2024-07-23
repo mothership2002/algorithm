@@ -1,6 +1,5 @@
 package search;
 
-import abs.Algorithm;
 import abs.Search;
 import module.RandomModule;
 
