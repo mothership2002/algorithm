@@ -2,6 +2,7 @@ import abs.Algorithm;
 import module.ClassExplorer;
 import sort.Sort;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -11,7 +12,7 @@ public class SortAlgorithmExecutor {
 
     private final static String INIT = "초기 값";
     private final static String END = "정렬 값";
-    private final static boolean FLAG = true;
+    private final static boolean FLAG = false;
     private static final String PACKAGE = "sort.impl";
     private static final String POSTFIX = "Sort";
 
@@ -45,12 +46,8 @@ public class SortAlgorithmExecutor {
 
     private static void print(String name, int count) {
         Set<Class<?>> classList = ClassExplorer.getClassList(PACKAGE);
-        Map<String, Algorithm> sortMap = ClassExplorer.init(classList, count, POSTFIX, name);
-        if (sortMap.containsKey(name)) {
-            print(sortMap.get(name));
-        } else {
-            sortMap.values().forEach(SortAlgorithmExecutor::print);
-        }
+        List<Algorithm> list = ClassExplorer.init(classList, count, POSTFIX, name);
+        list.forEach(SortAlgorithmExecutor::print);
     }
 
 

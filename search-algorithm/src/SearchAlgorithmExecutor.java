@@ -2,7 +2,7 @@ import abs.Algorithm;
 import module.ClassExplorer;
 import search.Search;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -15,19 +15,23 @@ public class SearchAlgorithmExecutor {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("put in array length : ");
-        int count = Integer.parseInt(scanner.nextLine());
-
+        int count = 50;
+        try {
+            count = Integer.parseInt(scanner.nextLine());
+        } catch (RuntimeException ignored) {
+        }
+        System.out.println("elemental count : " + count);
         System.out.print("put in search algorithm : ");
         String name = scanner.nextLine();
 
         // init
         Set<Class<?>> classList = ClassExplorer.getClassList(PACKAGE);
-        Map<String, Algorithm> map = ClassExplorer.init(classList, count, POSTFIX, name);
+        List<Algorithm> list = ClassExplorer.init(classList, count, POSTFIX, name);
         System.out.print("put in you want to find one : ");
         String keyword = scanner.nextLine();
 
         // execute
-        map.values().stream()
+        list.stream()
                 .map(algorithm -> (Search) algorithm)
                 .forEach(search -> search.search(Integer.parseInt(keyword)));
 

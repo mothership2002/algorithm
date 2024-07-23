@@ -19,7 +19,7 @@ public abstract class Sort implements Algorithm {
         sorting();
         endTime = System.nanoTime();
         double durationMs = ((double) (endTime - startTime) / 1_000_000);
-        System.out.println("[소요시간] : " + durationMs + "ms");
+        System.out.println(DURATION + durationMs + MILLISECOND);
     }
 
     public void printIntegerGroup(String name) {

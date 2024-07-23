@@ -29,7 +29,9 @@ public class ClassExplorer {
                     String[] fileList = file.list();
                     if (fileList != null) {
                         for (String fileName : fileList) {
-                            classes.add(Class.forName(packageName + DOT + fileName.substring(0, fileName.lastIndexOf(DOT))));
+                            if (fileName.endsWith(".class")) {
+                                classes.add(Class.forName(packageName + DOT + fileName.substring(0, fileName.lastIndexOf(DOT))));
+                            }
                         }
                     }
                 }
@@ -41,7 +43,7 @@ public class ClassExplorer {
     }
 
     /**
-     *
+     * execute construct wrapper method
      * @param classList @ Collection classes metadata
      * @param count     @ User input - integerGroup length
      * @param POSTFIX   @ Algorithm POSTFIX (ex: Sort, Search ...)
@@ -50,7 +52,7 @@ public class ClassExplorer {
      */
     public static List<Algorithm> init(Collection<Class<?>> classList, int count, String POSTFIX, String name) {
         List<Class<?>> filteredClass = classList.stream()
-                .filter(clazz -> clazz.getSimpleName().contains(name))
+                .filter(clazz -> clazz.getSimpleName().toLowerCase().contains(name))
                 .toList();
         return filteredClass.isEmpty()
                 ? getAlgorithmMap(classList, count, POSTFIX)
@@ -58,7 +60,7 @@ public class ClassExplorer {
     }
 
     /**
-     *
+     * execute construct method
      * @param classList @ Collection classes metadata
      * @param count     @ User input - integerGroup length
      * @param POSTFIX   @ Algorithm POSTFIX (ex: Sort, Search ...)
@@ -76,6 +78,4 @@ public class ClassExplorer {
         }
         return algorithms;
     }
-
-
 }

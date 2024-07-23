@@ -21,4 +21,17 @@ public class RandomModule {
         }
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public static int[] getArrayForBinarySearch(int count) {
+        Set<Integer> set = new HashSet<>();
+        List<Integer> list = new ArrayList<>();
+        while (set.size() < count) {
+            int number = getNumber(count * 2); // temporary
+            if (!set.contains(number)) {
+                list.add(number);
+                set.add(number);
+            }
+        }
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
 }

@@ -9,13 +9,14 @@ public class LinearSearch extends Search {
         super(count);
     }
 
-
     @Override
     protected void searching(int keyword) {
-        for (int i : integerGroup) {
-            if (i == keyword) {
-                break;
+        for (int i = 0; i < integerGroup.length; i++) {
+            if (integerGroup[i] == keyword) {
+                System.out.println(INDEX + i);
+                return;
             }
         }
+        notFoundKeyword();
     }
 }
