@@ -7,7 +7,7 @@ public class Graph {
     private final int vertices;
     private final List<Edge> edges;
 
-    public Graph(int vertices, List<Edge> edges) {
+    public Graph(int vertices) {
         this.vertices = vertices;
         this.edges = new ArrayList<>();
     }
@@ -20,5 +20,8 @@ public class Graph {
         return vertices;
     }
 
+    public List<Edge> getEdgeList() {
+        return edges;
+    }
 
 }
